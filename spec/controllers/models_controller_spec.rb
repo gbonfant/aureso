@@ -3,7 +3,7 @@ require 'rails_helper'
 describe ModelsController do
   describe 'GET models/:model_slug/model_types' do
     it 'returns a list of models and models types' do
-      get 'foo_car/model_types'
+      get :model_types, { model_slug: 'foocar' }
 
       expect(response).to be_success
     end
