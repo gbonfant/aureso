@@ -2,12 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
 gem 'sqlite3'
+gem 'nokogiri'
 gem 'jbuilder', '~> 2.0'
 gem 'active_model_serializers'
 
 group :development, :test do
   gem 'pry'
-  gem 'byebug'
+  gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.0'
 end
 
