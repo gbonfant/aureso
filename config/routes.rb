@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :models, param: :model_slug, only: [] do
-    get :model_types, on: :member
+  scope '/models' do
+    get ':model_slug/model_types', to: 'models#model_types'
+    post ':model_slup/model_types_price/:model_type_slug', to: 'models#model_types_price'
   end
 end
