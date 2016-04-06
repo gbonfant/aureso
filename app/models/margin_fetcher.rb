@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class MarginFetcher
   class << self
     def flexible_margin
