@@ -9,8 +9,8 @@ describe ModelsController do
     end
 
     it 'returns a list of models and models types' do
-      create(:model_with_model_types, name: 'serie_1', model_slug: 'foobar')
-      get(:model_types, { model_slug: 'foobar' })
+      create(:model_with_model_types, model_slug: 'series_1')
+      get(:model_types, { model_slug: 'series_1' })
 
       res = JSON.parse(response.body, symbolize_names: true)
 
@@ -18,6 +18,20 @@ describe ModelsController do
       expect(res[:models]).not_to be_empty
     end
 
-    it 'returns the total_price for each model type'
+    it 'returns the total_price for each model type' do
+      create(:organization_with_models, pricing_policy: 'flexible')
+
+      allow(MarginFetcher).to receive(:flexible_margin) { 20 }
+
+      get(:model_types, { model_slug: 'series_1' })
+
+      res = JSON.parse(response.body, symbolize_names: true)
+
+      expect(res[:models]).to eq([{
+        name: 'Series 1', model_types: [
+          { name: 'bmw_116i', total_price: 4000 }, { name: 'bmw_125i', total_price: 5000 }
+        ]
+      }])
+    end
   end
 end

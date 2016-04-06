@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405133723) do
+ActiveRecord::Schema.define(version: 20160406100744) do
 
   create_table "model_types", force: :cascade do |t|
     t.string  "name"
@@ -31,8 +31,13 @@ ActiveRecord::Schema.define(version: 20160405133723) do
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.string "public_name"
-    t.string "type"
+    t.string "kind"
     t.string "pricing_policy"
+  end
+
+  create_table "ownerships", force: :cascade do |t|
+    t.integer "model_id"
+    t.integer "organization_id"
   end
 
 end
