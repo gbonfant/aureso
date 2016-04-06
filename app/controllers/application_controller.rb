@@ -1,5 +1,21 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :authenticate_request
+
+  private
+
+  def authenticate_request
+    unless params[:auth_token].presence == ENV['API_TOKEN']
+      render status: 403, json: error_message
+    end
+  end
+
+  def error_message
+    { error:
+      {
+        status: 403,
+        message: 'Unauthorized request, please use a valid auth_token.'
+      }
+    }
+  end
 end

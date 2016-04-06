@@ -15,8 +15,8 @@ describe Organization do
     expect(organization).to be_invalid
   end
 
-  it 'validates the presence of type' do
-    organization = build(:organization, type: nil)
+  it 'validates the presence of kind' do
+    organization = build(:organization, kind: nil)
 
     expect(organization).to be_invalid
   end
@@ -27,8 +27,8 @@ describe Organization do
     expect(organization).to be_invalid
   end
 
-  it 'validates the value of type' do
-    organization = build(:organization, type: 'Supermarket')
+  it 'validates the value of kind' do
+    organization = build(:organization, kind: 'Supermarket')
 
     expect(organization).to be_invalid
   end

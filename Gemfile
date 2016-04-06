@@ -9,6 +9,7 @@ gem 'active_model_serializers', '~> 0.10.0.rc5'
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
+  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.0'
 end
 
