@@ -6,6 +6,9 @@ class ModelsController < ApplicationController
   end
 
   def model_types_price
-    render json: :ok
+    model_type = ModelType.find_by(model_type_slug: params['model_type_slug'])
+    model_type.update_attribute(:base_price, params[:base_price])
+
+    render json: model_type, show_base_price: true
   end
 end
