@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+ActiveRecord::Base.transaction do
+  audi_a5 = Model.create(name: 'Audi A5', model_slug: 'audi_a5')
+  audi_a8 = Model.create(name: 'Audi A8', model_slug: 'audi_a8')
+
+  ModelType.create(name: 'Coupe', model_type_slug: 'coupe_8t3', base_price: 100, model_id: audi_a5)
+  ModelType.create(name: 'S8 FSI quattro', model_type_slug: 's8_quattro', base_price: 300, model_id: audi_a8)
+
+  Organization.create(
+    name: 'Marina Bay Show Room',
+    kind: 'Show room',
+    pricing_policy: 'fixed',
+    models: [audi_a5, audi_a8]
+  )
+end
